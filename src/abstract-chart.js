@@ -140,7 +140,7 @@ class AbstractChart extends Component {
           origin={`${x}, ${y}`}
           key={Math.random()}
           x={x}
-          textAnchor="end"
+          textAnchor="middle"
           y={y}
           {...this.getPropsForLabels()}
         >
