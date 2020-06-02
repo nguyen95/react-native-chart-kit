@@ -39,7 +39,7 @@ class StackedBarChart extends AbstractChart {
         fac = .7;
       }
       for (let z = 0; z < x.length; z++) {
-        h = (height - 55) * (x[z] / border);
+        h = (height / 4) * 3 * (x[z] / border);
         const y = (height / 4) * 3 - h + st;
         const xC =
           (paddingRight +
@@ -133,7 +133,7 @@ class StackedBarChart extends AbstractChart {
     var stackedBar = data.legend && data.legend.length == 0 ? false : true;
     return (
       <View style={style}>
-        <Svg height={height} width={width}>
+        <Svg height={height - 40} width={width}>
           {this.renderDefs({
             ...config,
             ...this.props.chartConfig
@@ -159,8 +159,8 @@ class StackedBarChart extends AbstractChart {
                   count: segments,
                   data: [0, border],
                   paddingTop,
-                  paddingRight,
-                  decimalPlaces
+                  paddingRight: paddingRight - 16,
+                  decimalPlaces: 1
                 })
               : null}
           </G>
@@ -169,7 +169,7 @@ class StackedBarChart extends AbstractChart {
               ? this.renderVerticalLabels({
                   ...config,
                   labels: data.labels,
-                  paddingRight: paddingRight + 28,
+                  paddingRight: paddingRight + 20,
                   stackedBar,
                   paddingTop,
                   horizontalOffset: barWidth
@@ -187,11 +187,11 @@ class StackedBarChart extends AbstractChart {
               stackedBar,
             })}
           </G>
-          {data.legend && data.legend.length != 0 && this.renderLegend({
+          {/* {data.legend && data.legend.length != 0 && this.renderLegend({
             ...config,
             legend: data.legend,
             colors: this.props.data.barColors
-          })}
+          })} */}
         </Svg>
       </View>
     );
